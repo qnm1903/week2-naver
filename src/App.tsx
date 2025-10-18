@@ -125,7 +125,9 @@ function App() {
   // SOCKET.IO SETUP
   // ============================================================
   useEffect(() => {
-    const newSocket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:8080', {
+    const serverUrl = import.meta.env.VITE_SERVER_URL || window.location.origin;
+    
+    const newSocket: Socket<ServerToClientEvents, ClientToServerEvents> = io(serverUrl, {
       transports: ['websocket', 'polling'],
       reconnection: true,
       reconnectionAttempts: 5,

@@ -819,5 +819,5 @@ io.on('connection', (socket: TypedSocket) => {
 // ============================================================
 
 httpServer.listen(PORT, () => {
-  console.log(`Socket.IO server running on http://localhost:${PORT}`);
+  console.log(`Socket.IO server is running`);
 });
