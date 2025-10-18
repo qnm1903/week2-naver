@@ -6,7 +6,8 @@
     "outDir": "./dist",
     "rootDir": "./server",
     "noEmit": false,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "allowImportingTsExtensions": false
   },
   "include": ["server/**/*"],
   "exclude": ["node_modules"]
