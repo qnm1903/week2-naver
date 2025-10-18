@@ -249,18 +249,6 @@ function broadcastToRoom<K extends keyof ServerToClientEvents>(
   room.spectators.forEach((spectator) => spectator.emit(event, ...args));
 }
 
-function broadcastToPlayers<K extends keyof ServerToClientEvents>(
-  roomId: string,
-  event: K,
-  ...args: Parameters<ServerToClientEvents[K]>
-): void {
-  const room = getRoom(roomId);
-  if (!room) return;
-
-  if (room.players.odd) room.players.odd.emit(event, ...args);
-  if (room.players.even) room.players.even.emit(event, ...args);
-}
-
 function getOpponent(room: Room, player: 'ODD' | 'EVEN'): TypedSocket | null {
   return player === 'ODD' ? room.players.even : room.players.odd;
 }
@@ -588,7 +576,7 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents, Record<string,
 app.use(express.static(path.join(__dirname, '../dist/client')));
 
 // Fallback to index.html for React Router (SPA)
-app.get('*', (req: Request, res: Response) => {
+app.get('*', (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '../dist/client/index.html'), (err: Error | null) => {
     if (err) {
       console.error('Error serving index.html:', err);
