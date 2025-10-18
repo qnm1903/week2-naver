@@ -600,7 +600,7 @@ io.on('connection', (socket: TypedSocket) => {
   // CREATE_ROOM
   socket.on('CREATE_ROOM', () => {
     const roomId = generateRoomId();
-    const room = createRoom(roomId);
+    createRoom(roomId);
 
     console.log(`🏗️  Room created by ${socket.id}: ${roomId}`);
 
