@@ -5,3 +5,4 @@ dist-ssr
 .DS_Store
 .vscode
 .env
+tsconfig.tsbuildinfo
